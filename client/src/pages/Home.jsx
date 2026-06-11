@@ -48,7 +48,7 @@ const Home = ({ showNotification, onShowProduct, onAddToCart, onAddToWishlist })
   return (
     <>
       <div className="header">
-        <div>
+        <div className="header-text">
           <h1>Level up your style</h1>
           <p>with our stunning collections</p>
           <button className="header-button" onClick={() => navigate('/collection')}>Shop Now</button>

@@ -182,7 +182,7 @@ const UserPanel = ({ showNotification }) => {
                     <div className="order-card-items">
                       {order.items.map((item, idx) => (
                         <div key={idx} className="order-item-row">
-                          <img src={item.image} alt={item.name} />
+                          <img src={item.image} alt={item.name} referrerPolicy="no-referrer" crossOrigin="anonymous" onError={(e) => { e.target.src = 'https://placehold.co/100x100/e2e8f0/64748b?text=N/A'; }} />
                           <div className="order-item-info">
                             <h4>{item.name}</h4>
                             <p>Qty: {item.quantity} x ₹{Math.round(item.price)}</p>
@@ -219,7 +219,7 @@ const UserPanel = ({ showNotification }) => {
               <div className="wishlist-grid">
                 {wishlist.map((product) => (
                   <div key={product._id} className="wishlist-card">
-                    <img src={product.image} alt={product.name} />
+                    <img src={product.image} alt={product.name} referrerPolicy="no-referrer" crossOrigin="anonymous" onError={(e) => { e.target.src = 'https://placehold.co/200x200/e2e8f0/64748b?text=N/A'; }} />
                     <div className="wishlist-card-info">
                       <h3>{product.name}</h3>
                       <p className="wishlist-price">₹{Math.round(product.price)}</p>

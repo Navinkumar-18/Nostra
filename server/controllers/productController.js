@@ -85,7 +85,14 @@ exports.createProduct = async (req, res) => {
     const product = await Product.create(productData);
     res.status(201).json(product);
   } catch (error) {
-    res.status(500).json({ message: 'Internal server error' });
+    if (error.name === 'ValidationError') {
+      const messages = Object.values(error.errors).map(e => e.message);
+      return res.status(400).json({ message: messages.join('. ') });
+    }
+    if (error.code === 11000) {
+      return res.status(400).json({ message: 'Duplicate field value' });
+    }
+    res.status(500).json({ message: error.message || 'Internal server error' });
   }
 };
 
@@ -101,7 +108,14 @@ exports.updateProduct = async (req, res) => {
     }
     res.json(product);
   } catch (error) {
-    res.status(500).json({ message: 'Internal server error' });
+    if (error.name === 'ValidationError') {
+      const messages = Object.values(error.errors).map(e => e.message);
+      return res.status(400).json({ message: messages.join('. ') });
+    }
+    if (error.code === 11000) {
+      return res.status(400).json({ message: 'Duplicate field value' });
+    }
+    res.status(500).json({ message: error.message || 'Internal server error' });
   }
 };
 

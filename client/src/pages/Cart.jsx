@@ -67,7 +67,7 @@ const Cart = ({ showNotification }) => {
             <div className="cart-items-section">
               {cart.items.map((item) => (
                 <div key={`${item.product._id}-${item.size}-${item.color}`} className="cart-item-card">
-                  <img src={item.product?.image} alt={item.product?.name} className="cart-item-image" />
+                  <img src={item.product?.image} alt={item.product?.name} className="cart-item-image" referrerPolicy="no-referrer" crossOrigin="anonymous" onError={(e) => { e.target.src = 'https://placehold.co/100x100/e2e8f0/64748b?text=N/A'; }} />
                   <div className="cart-item-details">
                     <h3>{item.product?.name}</h3>
                     <p className="cart-item-price">₹{Math.round(item.product?.price || 0)}</p>

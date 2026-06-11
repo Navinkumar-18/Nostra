@@ -17,9 +17,13 @@ const generateStars = (rating) => {
 const ProductCard = ({ product, onShowDetails, onAddToCart, onAddToWishlist }) => {
   const { user } = useAuth();
 
+  const handleImageError = (e) => {
+    e.target.src = 'https://placehold.co/400x400/e2e8f0/64748b?text=No+Image';
+  };
+
   return (
     <div className="product-card" onClick={() => onShowDetails(product._id)}>
-      <img src={product.image} alt={product.name} className="product-image" />
+      <img src={product.image} alt={product.name} className="product-image" referrerPolicy="no-referrer" crossOrigin="anonymous" onError={handleImageError} />
       <div className="product-info">
         <div className="product-name">{product.name}</div>
         <div className="product-price">₹{Math.round(product.price)}</div>

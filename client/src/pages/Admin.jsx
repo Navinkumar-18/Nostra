@@ -255,42 +255,44 @@ const Admin = ({ showNotification }) => {
         {activeTab === 'orders' && (
           <>
             <h1 className="dashboard-title">Orders Management</h1>
-            <table className="admin-table">
-              <thead>
-                <tr>
-                  <th>Order ID</th>
-                  <th>Customer</th>
-                  <th>Items</th>
-                  <th>Total</th>
-                  <th>Status</th>
-                  <th>Payment</th>
-                  <th>Date</th>
-                  <th>Actions</th>
-                </tr>
-              </thead>
-              <tbody>
-                {orders.map((order) => (
-                  <tr key={order._id}>
-                    <td>#{order._id.slice(-8)}</td>
-                    <td>{order.user?.name || order.shippingAddress?.firstName || 'N/A'}</td>
-                    <td>{order.items?.length || 0}</td>
-                    <td>₹{Math.round(order.total || 0)}</td>
-                    <td><span className={`status-badge status-${order.status}`}>{order.status}</span></td>
-                    <td><span className={`status-badge status-${order.paymentStatus}`}>{order.paymentStatus || 'pending'}</span></td>
-                    <td>{new Date(order.createdAt).toLocaleDateString()}</td>
-                    <td>
-                      <select onChange={(e) => handleUpdateOrderStatus(order._id, e.target.value)} value={order.status}>
-                        <option value="pending">Pending</option>
-                        <option value="processing">Processing</option>
-                        <option value="shipped">Shipped</option>
-                        <option value="delivered">Delivered</option>
-                        <option value="cancelled">Cancelled</option>
-                      </select>
-                    </td>
+            <div className="table-wrapper">
+              <table className="admin-table">
+                <thead>
+                  <tr>
+                    <th>Order ID</th>
+                    <th>Customer</th>
+                    <th>Items</th>
+                    <th>Total</th>
+                    <th>Status</th>
+                    <th>Payment</th>
+                    <th>Date</th>
+                    <th>Actions</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
+                </thead>
+                <tbody>
+                  {orders.map((order) => (
+                    <tr key={order._id}>
+                      <td>#{order._id.slice(-8)}</td>
+                      <td>{order.user?.name || order.shippingAddress?.firstName || 'N/A'}</td>
+                      <td>{order.items?.length || 0}</td>
+                      <td>₹{Math.round(order.total || 0)}</td>
+                      <td><span className={`status-badge status-${order.status}`}>{order.status}</span></td>
+                      <td><span className={`status-badge status-${order.paymentStatus}`}>{order.paymentStatus || 'pending'}</span></td>
+                      <td>{new Date(order.createdAt).toLocaleDateString()}</td>
+                      <td>
+                        <select onChange={(e) => handleUpdateOrderStatus(order._id, e.target.value)} value={order.status}>
+                          <option value="pending">Pending</option>
+                          <option value="processing">Processing</option>
+                          <option value="shipped">Shipped</option>
+                          <option value="delivered">Delivered</option>
+                          <option value="cancelled">Cancelled</option>
+                        </select>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </>
         )}
 
@@ -324,44 +326,47 @@ const Admin = ({ showNotification }) => {
                 </div>
               </form>
             </div>
-            <table className="admin-table">
-              <thead>
-                <tr>
-                  <th>Image</th>
-                  <th>Name</th>
-                  <th>Category</th>
-                  <th>Price</th>
-                  <th>Stock</th>
-                  <th>Sizes</th>
-                  <th>Colors</th>
-                  <th>Actions</th>
-                </tr>
-              </thead>
-              <tbody>
-                {products.map((product) => (
-                  <tr key={product._id}>
-                    <td><img src={product.image} alt="" style={{ width: '50px', height: '50px', objectFit: 'cover', borderRadius: '5px' }} /></td>
-                    <td>{product.name}</td>
-                    <td>{product.category}</td>
-                    <td>₹{Math.round(product.price)}</td>
-                    <td>{product.stockQuantity || 0}</td>
-                    <td>{(product.sizes || []).join(', ')}</td>
-                    <td>{(product.colors || []).join(', ')}</td>
-                    <td>
-                      <button onClick={() => handleEditProduct(product)} className="btn-primary" style={{ padding: '5px 10px', marginRight: '5px' }}>Edit</button>
-                      <button onClick={() => handleDeleteProduct(product._id)} className="btn-secondary" style={{ padding: '5px 10px' }}>Delete</button>
-                    </td>
+            <div className="table-wrapper">
+              <table className="admin-table">
+                <thead>
+                  <tr>
+                    <th>Image</th>
+                    <th>Name</th>
+                    <th>Category</th>
+                    <th>Price</th>
+                    <th>Stock</th>
+                    <th>Sizes</th>
+                    <th>Colors</th>
+                    <th>Actions</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
+                </thead>
+                <tbody>
+                  {products.map((product) => (
+                    <tr key={product._id}>
+                      <td><img src={product.image} alt="" style={{ width: '50px', height: '50px', objectFit: 'cover', borderRadius: '5px' }} referrerPolicy="no-referrer" crossOrigin="anonymous" onError={(e) => { e.target.src = 'https://placehold.co/50x50/e2e8f0/64748b?text=N/A'; }} /></td>
+                      <td>{product.name}</td>
+                      <td>{product.category}</td>
+                      <td>₹{Math.round(product.price)}</td>
+                      <td>{product.stockQuantity || 0}</td>
+                      <td>{(product.sizes || []).join(', ')}</td>
+                      <td>{(product.colors || []).join(', ')}</td>
+                      <td>
+                        <button onClick={() => handleEditProduct(product)} className="btn-primary" style={{ padding: '5px 10px', marginRight: '5px' }}>Edit</button>
+                        <button onClick={() => handleDeleteProduct(product._id)} className="btn-secondary" style={{ padding: '5px 10px' }}>Delete</button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </>
         )}
 
         {activeTab === 'users' && (
           <>
             <h1 className="dashboard-title">Users Management</h1>
-            <table className="admin-table">
+            <div className="table-wrapper">
+              <table className="admin-table">
               <thead>
                 <tr>
                   <th>Name</th>
@@ -390,13 +395,15 @@ const Admin = ({ showNotification }) => {
                 ))}
               </tbody>
             </table>
+            </div>
           </>
         )}
 
         {activeTab === 'contacts' && (
           <>
             <h1 className="dashboard-title">Contact Messages</h1>
-            <table className="admin-table">
+            <div className="table-wrapper">
+              <table className="admin-table">
               <thead>
                 <tr><th>Name</th><th>Email</th><th>Subject</th><th>Message</th><th>Status</th><th>Date</th><th>Actions</th></tr>
               </thead>
@@ -421,6 +428,7 @@ const Admin = ({ showNotification }) => {
                 ))}
               </tbody>
             </table>
+            </div>
           </>
         )}
 
@@ -430,6 +438,7 @@ const Admin = ({ showNotification }) => {
             {reviews.length === 0 ? (
               <p style={{ color: '#666' }}>No reviews yet.</p>
             ) : (
+              <div className="table-wrapper">
               <table className="admin-table">
                 <thead>
                   <tr><th>User</th><th>Product</th><th>Rating</th><th>Comment</th><th>Date</th><th>Actions</th></tr>
@@ -447,8 +456,9 @@ const Admin = ({ showNotification }) => {
                       </td>
                     </tr>
                   ))}
-                </tbody>
+                  </tbody>
               </table>
+              </div>
             )}
           </>
         )}

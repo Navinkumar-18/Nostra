@@ -18,7 +18,7 @@ const CartModal = ({ isOpen, onClose, onCheckout }) => {
         ) : (
           cart.items.map((item) => (
             <div key={`${item.product._id}-${item.size}-${item.color}`} className="cart-item">
-              <img src={item.product?.image} alt={item.product?.name} />
+              <img src={item.product?.image} alt={item.product?.name} referrerPolicy="no-referrer" crossOrigin="anonymous" onError={(e) => { e.target.src = 'https://placehold.co/100x100/e2e8f0/64748b?text=N/A'; }} />
               <div className="cart-item-details">
                 <h4>{item.product?.name}</h4>
                 <div className="cart-item-price">₹{Math.round(item.product?.price || 0)}</div>

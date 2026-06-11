@@ -58,7 +58,7 @@ const Orders = ({ showNotification }) => {
                 <div className="order-card-items">
                   {order.items.map((item, idx) => (
                     <div key={idx} className="order-item-row">
-                      <img src={item.image} alt={item.name} />
+                      <img src={item.image} alt={item.name} referrerPolicy="no-referrer" crossOrigin="anonymous" onError={(e) => { e.target.src = 'https://placehold.co/100x100/e2e8f0/64748b?text=N/A'; }} />
                       <div className="order-item-info">
                         <h4>{item.name}</h4>
                         <p>Qty: {item.quantity} | ₹{Math.round(item.price * item.quantity)}</p>

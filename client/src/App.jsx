@@ -20,7 +20,7 @@ import Admin from './pages/Admin';
 import UserPanel from './pages/UserPanel';
 
 const App = () => {
-  const { user, isAdmin, loading } = useAuth();
+  const { user, loading } = useAuth();
   const { addToCart } = useCart();
   const { notifications, showNotification } = useNotification();
   const navigate = useNavigate();
@@ -30,11 +30,11 @@ const App = () => {
   useEffect(() => {
     if (!loading && !initialCheckDone.current) {
       initialCheckDone.current = true;
-      if (user && isAdmin && location.pathname === '/') {
-        navigate('/admin', { replace: true });
+      if (location.pathname === '/admin') {
+        navigate('/', { replace: true });
       }
     }
-  }, [user, isAdmin, loading]);
+  }, [loading]);
 
   const [showLogin, setShowLogin] = useState(false);
   const [showSignup, setShowSignup] = useState(false);
