@@ -47,25 +47,25 @@ const Home = ({ showNotification, onShowProduct, onAddToCart, onAddToWishlist })
 
   return (
     <>
-      <div className="header">
+      <section className="header">
         <div className="header-text">
+          <span className="header-eyebrow">New season collection</span>
           <h1>Level up your style</h1>
           <p>with our stunning collections</p>
           <button className="header-button" onClick={() => navigate('/collection')}>Shop Now</button>
         </div>
-        <div>
+        <div className="header-image-wrapper">
           <img className="header-image" src="https://images.unsplash.com/photo-1483985988355-763728e1935b?w=400&h=600&fit=crop" alt="Fashion" />
         </div>
-      </div>
+      </section>
 
-      <div className="service">
+      <section className="service">
         <div className="service-container1">
           <div>
-            <h2>We provide Best</h2>
-            <h2>Customer Experience</h2>
+            <h2>We provide the best customer experience</h2>
           </div>
           <div>
-            <p>||We ensure that our Customers have the best Shopping Experience</p>
+            <p>We ensure that our customers have the best shopping experience.</p>
           </div>
         </div>
         <div className="service-container2">
@@ -85,7 +85,7 @@ const Home = ({ showNotification, onShowProduct, onAddToCart, onAddToWishlist })
             <p>Free shipping on orders over $50. Express delivery available. Your style arrives quickly.</p>
           </div>
         </div>
-      </div>
+      </section>
 
       <div className="products-section">
         <h2>New Arrival</h2>
