@@ -47,7 +47,7 @@ const Contact = ({ showNotification }) => {
             <i className="fa-solid fa-phone"></i>
             <div>
               <h3>Phone</h3>
-              <p>+1 (555) 123-4567</p>
+              <p>6382455881</p>
             </div>
           </div>
 
