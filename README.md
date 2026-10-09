@@ -179,4 +179,4 @@ The backend serves the built React app on port 5000.
 
 ## License
 
-MIT
+Apache2.0
